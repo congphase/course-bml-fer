@@ -19,7 +19,9 @@ def prepare_data(data):
 
 def loadFer2013(path):
     data = pd.read_csv(path)
-
+    #merge disgust to fear
+    data['emotion'][data['emotion']>1]-=1
+    
     X_train, y_train = prepare_data(data[data[' Usage']=='Training'])
     X_val, y_val = prepare_data(data[data[' Usage']=='PrivateTest'])
     X_test, y_test = prepare_data(data[data[' Usage']=='PublicTest'])
